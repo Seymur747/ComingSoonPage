@@ -12,8 +12,8 @@
     display: inline-block;
     color: whitesmoke;
     position: absolute;
-    top: 10%;
-    left: 28%;
+    top: 20vh;
+    left: 28vw;
     text-align: center;
  
 }
@@ -28,3 +28,17 @@
     background:rebeccapurple
 }
 
+.content h6{
+   
+    font-size: 1.5vw;
+}
+.resize{
+    width: 20vw;
+}
+.errorBox{
+    margin: 10px;
+    display: inline-block;
+    border-radius: 10px;
+    border: 2px solid red;
+    width: 50%;
+}

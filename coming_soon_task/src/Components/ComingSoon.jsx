@@ -1,6 +1,8 @@
 import React from "react";
 import s from './../Assets/Styles/ComingSoon.module.css';
 let ComingSoon=(props)=>{
+    localStorage.setItem('isMe',1233)
+    console.log(props.state)
     return (
         <div className={s.wrapper}>
             <div className={s.content}>
@@ -9,10 +11,13 @@ let ComingSoon=(props)=>{
                     <div className={`input-group ${s.inputDiv}`}>
                         <input type="text" className="form-control" name='code' placeholder="Введите код" />
                         <div className="input-group-append">
-                            <button className="btn btn-outline-secondary"  type="submit">Отправить</button>
+                            <button className="btn btn-outline-secondary"  type="submit"><a>Отправить</a></button>
                         </div>
                     </div>
-                    <small>Ввод кода даст доступ к сайту</small>
+                    {!props.state &&<div className={s.errorBox}>
+                        <span>Неверный код</span>
+                    </div>}
+                    <h6>Ввод кода даст доступ к сайту</h6>
                 </form>
             </div>
         </div>

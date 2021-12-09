@@ -1,10 +1,14 @@
 import ComingSoon from "./ComingSoon";
+import React, { useState } from 'react';
+import Dashboard from './Dashboard'
+
+
 let ComingSoonContainer=()=>{
-    let makeRequest=async(e)=>{
-        console.log('isledi')
+    const [logged, setLog] = useState(2);
+    let makeRequest=async(e)=>{ 
         e.preventDefault()
-          var code=e.target.code.value
-            fetch('http://localhost:3001/',{
+          let code=e.target.code.value
+          let response=await fetch('http://localhost:3001/',{
            method:'post',
            headers:{
             'Content-Type': 'application/json'
@@ -13,9 +17,26 @@ let ComingSoonContainer=()=>{
                code:code
            })
        })
+       let result=await response.json();
+        if(result){
+                setLog(true);
+        }
+        else{
+            setLog(false)
+        }
     }
-    return(
-        <ComingSoon check={makeRequest}/>
-        )
+
+    if(localStorage.getItem('key')){
+        return <Dashboard  changeLog={setLog} state={logged}/>
+    }
+
+    if (logged==2 || logged==false) {
+        return(
+            <ComingSoon state={logged} check={makeRequest}/>
+            )
+    }
+    else{
+        return <Dashboard changeLog={setLog} state={logged}/>
+    }
 }
 export default ComingSoonContainer;
